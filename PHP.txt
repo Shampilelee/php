@@ -1,0 +1,1258 @@
+
+PHP is a server-side scripting language embedded in HTML. 
+PHP allows web developers to create dynamic content and interact with databases.
+PHP is known for its simplicity, speed, and flexibility.
+These are features that have made it a CORNERSTONE IN THE WEB DEVELOPMENT WORLD.
+
+PHP was originally acronymed as = PERSONAL HOME PAGE.
+CHANGED to PHP = PHP HYPERTEXT PREPROCESSOR.
+
+
+TO START WRITING CODE IN PHP, YOU NEED THE SYMTEX BELOW
+[
+    <?php
+        echo"I'm coding PHP"; 
+    ?>
+]
+
+TO ADD BETWEEN TWO WORDS, USE EXAMPLE BELOW
+[
+    <?php
+        echo"Server REMOTER IS HERE \n";
+        echo"I'm Changing The World";
+    ?>
+]
+
+TO ADD A BREAK LINE(Next Line), USE EXAMPLE BELOW
+[
+    <?php
+        echo"Server REMOTER IS HERE <br>";
+        echo"I'm Changing The World";
+    ?>
+]
+
+TO ADD COMMENT, USE EXAMPLE BELOW
+[
+    <?php 
+        // THIS IS A COMMENT
+        /*
+        THIS IS A LONG COMMENT
+        */ 
+    ?>
+]
+
+TO CAN INCLUDE HTML JAVASCRIPT TO A PHP CODE
+[
+    <?php
+        echo"Server REMOTER IS HERE <br>";
+        echo"I'm Changing The World";
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <br>
+        <button>Order Pizza</button>
+    </body>
+    </html>
+]
+
+VARIABLES IN PHP,
+TO DECLARE A VARIABLE YOU TYPE '$' THEN THE VARIABLE NAME.
+[
+    $name = "THIS is a string variable";
+    // TO DISPLAY VARIABLE NAME, USE EXAMPLE BELOW
+    echo $name;
+
+    // WE CAN ALSO DO THIS
+    echo "<br> What is This? {$name} <br><br>";
+
+    $age = 26;
+    echo "You are {$age} years old. <br><br>";
+
+    // FLOAT
+    $GPA = 3.8;
+    echo "Your GPA IS {2.5} <br><br>";
+
+    // TO ADD '$' TO A PRICE, USE EXAMPLE BELOW
+    // \${$price}
+    $price = 4.99;
+    echo "Your Pizza Is \${$price} <br> ";
+
+    // BOOLEAN
+    // '1' FOR TRUE '0' OR NOTHING FOR FALSE
+    $online = false;
+    echo "Online Status: {$online} ";
+
+
+    $quantity = 3;
+    $food = "rice";
+    $price = 34.86;
+
+    echo "you ordered {$quantity} of {$food} <br>";
+    $total = $quantity * $price;
+    echo "your total is: \${$total}";
+
+]
+
+
+
+ARITHMETHIC OPERATORS IN PHP
+[
+    $left = 10;
+    $right = 2;
+    $center = null;
+
+    // ADD
+    $center = $left + $right;
+    echo $center;
+
+    // SUBTRACT
+    $center = $left - $right;
+    echo $center;
+
+    // MULTIPLY
+    $center = $left * $right;
+    echo $center;
+
+    // DIVION
+    $center = $left / $right;
+    echo $center;
+
+    // THIS IS '10' RISE TO THE POWER '2'
+    $center = $left ** $right;
+    echo $center;
+
+    // THIS FINDS THE REMAINER
+    $center = $left % $right;
+    echo $center;
+
+]
+
+
+
+INCREAMENT AND DECREMENT OPEARTORS IN PHP
+[
+    $counter = 0;
+
+    // INCREAMENT
+    $counter++;
+    echo $counter;
+
+    // DECREAMENT
+    $counter--;
+    echo $counter;
+
+    DEFUALTLY INCREAMENT AND DECREAMENT ADD'S OR SUBTRACTS BY '1',
+    BUT YOU CAN SET THE NUMBER BY WHICH IT SHOULD INCREAS.
+
+    // THIS WILL INCREASE BY '2'
+    $counter+=2;
+
+    // THIS WILL DECREASE BY '2'
+    $counter-=2;
+]
+
+
+
+OPERATOR PRECEDENCE IN PHP
+[
+    /*
+          ()   = SOLVE ANYTHING HERE FIRST,
+          **   = THEN THIS,
+        * / %  = THEN THESE,
+         + _   = AND THEN THESE.
+    */
+]
+
+
+
+THE $_GET AND $_POST VARIABLES IN PHP
+[
+    /*
+    $_GET, $_POST = SPECIAL VARIABLES USED TO COLLECT DATA FROM AN HTML FORM, 
+                    DATA IS SENT TO THE FILE IN THE ACTION ATTRIBUTE OF <form>
+                    <form action="some_file.php" method="get"> 
+    
+    $_GET  = DATA IS APPENDED TO THE URL
+             NOT SECURE
+             CHAR LIMIT
+             BOOKMARK IS POSSIBLE w/ VALUS
+             GET REQUESTS CAN BE CACHED
+             BETTER FOR A SEARCH PAGE   
+    
+    $_POST = DATA IS PACKAGED INSIDE THE BODY OF THE HTTP REQUEST
+             MORE SECURE
+             NO DATA LIMIT
+             CANNOT BOOKMARK
+             GET REQUESTS ARE NOT CACHED
+             BETTER FOR SUBMITTING CREDENTIALS
+    */
+
+
+    ///// $_GET \\\\\
+    <html>
+    <body>
+    <form action="index.php" method="get">
+        <label>username:</label><br>
+        <input type="text" name="username"><br>
+        <label>passowrd:</label><br>
+        <input type="password" name="password"><br>
+        <input type="submit" value="Login ">
+    </form>
+    </body>
+    </html>
+    <?php
+        // $_GET \\
+        // $_GET IN PHP CAN HOLD MORE THAN ONE DATA, LIKE AN ARRAY.
+        // TO USE THE DATA FROM THE HTML FORM USE 'name' ATTRIBUTE AS REFERENCE,
+        // SEE EXAMPLE BELOW.
+        echo $_GET["username"] . "<br>";
+        echo $_GET["password"];
+
+        /*
+        TO ADD LINE BREAK YOU CAN USE THE FOLLOWING.
+            echo $_GET["username"] . "<br>";
+            echo "{$_GET["username"]} <br>";
+        */
+    ?>
+
+
+    ///// $_POST \\\\\
+    <html>
+    <body>
+    <form action="index.php" method="post">
+        <label>username:</label><br>
+        <input type="text" name="username"><br>
+        <label>passowrd:</label><br>
+        <input type="password" name="password"><br>
+        <input type="submit" value="Login ">
+    </form>
+    </body>
+    </html>
+    <?php
+        // $_POST \\
+        // $_POST IN PHP CAN HOLD MORE THAN ONE DATA, LIKE AN ARRAY.
+        // TO USE THE DATA FROM THE HTML FORM USE 'name' ATTRIBUTE AS REFERENCE,
+        // SEE EXAMPLE BELOW.
+        echo $_POST["username"] . "<br>";
+        echo $_POST["password"];
+
+        /*
+        TO ADD LINE BREAK YOU CAN USE THE FOLLOWING.
+            echo $_POST["username"] . "<br>";
+            echo "{$_POST["username"]} <br>";
+        */
+    ?>
+
+
+    //// EXECISE \\\\
+    ORDER PAGE FOR RESTURANT
+    [
+        <body>
+        <h1>Order Page For Resturant</h1>
+            <form action="index.php" method="post">
+                <label>Quantity:</label><br>
+                <input type="text" name="quantity"><br>
+                <input type="submit" value="Total">
+
+            </form>
+        </body>
+        </html>
+
+        <?php
+            $item = "pizza";    
+            $price = 5.99;
+            $quantity = $_POST["quantity"];
+            $total = null;
+
+            $total = $quantity * $price;
+
+            echo "You have ordered {$quantity} {$item}s <br>";
+            echo "Your Total is: \${$total}";
+        ?>
+    ]
+]
+
+
+
+MATHS FUNCTIONS IN PHP
+[
+    // THE ABSOLUTE FUNCTION
+    // THIS TURN NEGATIVE NUMBERS TO POSITIVE
+    $total = abs($num);
+    echo $total;
+
+    // THE ROUND FUNCTION
+    // THIS WILL ROUND THE NUMBERS NORMALLY
+    $total = round($num);
+    echo $total;
+
+    // THE FLOOR FUNCTION
+    // THIS WILL ALWAYS ROUND THE NUMBERS DOWN
+    $total = floor($num);
+    echo $total;
+
+    // THE CEIL FUNCTION
+    // THIS WILL ALWAYS ROUND THE NUMBERS UP
+    $total = ceil($num);
+    echo $total;
+
+    // THE square root FUNCTION
+    $total = sqrt($num);
+    echo $total;
+
+    // THE 'pow' FUNCTION
+    // THIS WILL rise one number to the other(number2).
+    $num1 = $_POST["number"];
+    $num2 = $_POST["number2"];
+    $total = null;
+    $total = pow($num1, $num2);
+    echo $total;
+
+    // THE MAX FUNCTION
+    // WHAT EVER VALUE YOU PASS ON TO THIS FUNCTION 
+    // IT WILL GIVE YOU THE BIGGEST VALUE.
+    $num1 = $_POST["number"];
+    $num2 = $_POST["number2"];
+    $num3 = $_POST["number3"];
+    $total = null;
+    $total = max($num1, $num2, $num3);
+    echo $total; 
+
+    // THE MIN FUNCTION
+    // WHAT EVER VALUE YOU PASS ON TO THIS FUNCTION 
+    // IT WILL GIVE YOU THE SMALLEST VALUE.
+    $num1 = $_POST["number"];
+    $num2 = $_POST["number2"];
+    $num3 = $_POST["number3"];
+    $total = null;
+    $total = min($num1, $num2, $num3);
+    echo $total; 
+
+    // THE 'PI' FUNCTION
+    // THIS DOES NOT ACCEPT ANY ARGUMENT
+    // USED FOR SCITIFIC AND MATHIMATICAL CALCULATIONS.
+    $total = pi();
+    echo $total;
+
+    // THE RANDOM FUNCTION
+    // YOU CAN SET THE RANGE OF NUMBERS YOU WANT
+    // EXAMPLE, FROM '1' TO '6'
+    $total = rand(1, 6);
+    echo $total;
+
+
+    //// EXECISE - USER ENTER RADIUS OF A CIRCLE, WE CALCULATE THE CIRCUMFRENCE, AREA, AND VOLUME \\\\
+    [
+        <html>
+        <body>
+            <h1>Enter Number</h1>
+            <form action="index.php" method="post">
+                <label>Radius:</label><br>
+                <input type="text" name="radius"><br>
+                <input type="submit" value="Calculate">
+            </form>
+        </body>
+        </html>
+
+        <?php
+            
+            $radius = $_POST["radius"];
+            $circumference = null;
+            $area = null;
+            $volume = null;
+
+            // CIRCUMFERENCE
+            $circumference = 2 * pi() * $radius;
+            // THIS WILL ROUND THE ANSWER TO THE NEARESS WHOLE INTERGER 
+            // OF THE FIRST SECOND(2) DIGIT AFTER THE '.' [EXAMPLE 574.35]
+            // YOU CAN CHANGE IT.
+            $circumference = round($circumference, 2);
+            
+            // AREA
+            $area = pi() * pow($radius, 2);
+            $area = round($area, 2);
+
+            // VOLUME
+            $volume = 4/3 * pi() * pow($radius, 3);
+            $volume = round($volume, 2);
+
+            echo "Circumference Is: {$circumference}cm <br>";
+            echo "Area Is: {$area}cm^2 <br>";
+            echo "Volume Is: {$volume}cm^3 <br>";
+        ?>
+    ]    
+]
+
+
+
+IF STATEMENT IN PHP
+[
+    // EXAMPLE 1 \\
+    [
+        $age = 2;
+
+        if ($age >= 18) {
+            # IF 18years AND ABOVE
+            echo "You may enter the site";
+        }
+        elseif ($age == 0){
+            echo "You were just born";
+        }
+        elseif ($age <= 0) {
+            # LESS THAN OR EQUAL TO 'O'
+            echo "That wasn't a valid age";
+        }
+        else {
+            echo "You must be 18+ to enter this site";
+        }
+    ]
+
+    // EXAMPLE 2 \\
+    [
+        $adult = true;
+
+        if ($adult == true) {
+            # IF 18years AND ABOVE
+            echo "You may enter the site";
+        }
+        else {
+            echo "You must be an adult to enter this site";
+        }
+    ]
+
+
+    /// EXECISE - CALCULATE SOMEBODY'S PAY INCLUDING OVERTIME \\\
+    [
+        <html>
+        <body>
+            <form action="index.php" method="post">
+                <label>Hours Worked This Week:</label><br>
+                <input type="number" name="Hours_Worked"><br>
+                <input type="submit" value="Pay">
+            </form>
+        </body>
+        </html>
+
+        <?php
+    
+            $default_hours_per_week = 50;
+            $rate_per_hour = 15;
+            $weekly_pay = null;
+
+            $hours_done_ByWorker = null;
+            $hours_done_ByWorker = $_POST["Hours_Worked"];
+
+            if ($hours_done_ByWorker <= 0) {
+                $weekly_pay = 0;
+            }
+            elseif ($hours_done_ByWorker <= $default_hours_per_week){
+                $weekly_pay = $hours_done_ByWorker * $rate_per_hour;
+            } 
+            else {
+                # Calculation For Over-Time Pay
+                # THE [1.5] WILL BE MULTIPLIED WITH THE [$rate_per_day]
+                # SO IT WILL BE SOMETHING LIKE THIS: [$rate_per_day * 1.5]
+                $weekly_pay = ($rate_per_hour * $default_hours_per_week) + (($hours_done_ByWorker - $default_hours_per_week) * ($rate_per_hour * 1.5));
+            }                        
+            
+            echo "You Made \${$weekly_pay} This Week.";
+        
+        ?>
+    ]
+]
+
+
+
+LOGICAL OPERATORS IN PHP
+[
+    LOGICAL OPEARTORS COMBINE CONDITIONAL STATEMENTS.
+
+    && = TRUE IF BOTH CONDITIONS ARE TRUE.
+    || = TRUE IF AT LEAST ON CONDITION IS TRUE.
+     ! = TRUE IF FALSE, FALSE IF TRUE.
+
+]
+
+
+
+SWITCH STATEMENTS IN PHP
+[
+    SWITCH STATEMENT IS A REPLACEMENT FOR USING MANY 'elseif' STATEMENT.
+    MORE EFFICIENT, LESS CODE TO WRITE.
+
+    EXAMPLE 1
+    [
+        $grade = "A";
+
+        switch ($grade){
+            case "A":
+                echo "You did great";
+                break;
+            case "B":
+                echo "You did good";
+                break;
+            case "C":
+                echo "You did okay";
+                break;
+            case "D":
+                echo "You did poorly";
+                break;
+            case "F":
+                echo "You failed";
+                break;
+            default:
+                echo "{$grade} is not valid";
+        }
+    ]
+
+    EXAMPLE 2
+    [
+        # TYPE SMALL 'L' IN [date("l");] TO GET THE DAY
+        $date = date("l");
+        switch ($date){
+            case "Monday":
+                echo "Mondays are likey busy";
+                break;
+            case "Tuesday":
+                echo "Tuesdays are a little busy";
+                break;
+            case "Wednesday":
+                echo "Wednesdays are beautiful";
+                break;
+            case "Thursday":
+                echo "Thursdays are nice";
+                break;
+            case "Friday":
+                echo "Fridays are full of joy";
+                break;
+            case "Saturday":
+                echo "Saturdays are for relaxing";
+                break;
+            case "Sunday":
+                echo "Sundays are For Church";
+                break;
+            default:
+                echo "{$date}";
+        }
+
+    ]
+]
+
+
+
+FOR LOOP IN PHP
+[
+    FOR LOOP WILL REPEAT SOME CODE A CERTAIN NUMBER OF TIMES.
+
+    for(initialization; condition; increament or decreament){
+        code;
+    }
+    ||| INCREAMENT |||
+    // EXAMPLE 1 \\
+    for ($play = 0; $play < 7; $play++){
+        echo "play play <br>";
+    }
+    // EXAMPLE 2 \\
+    for ($num = 0; $num <= 7; $num+=2){
+        echo $num . "<br>";
+    }
+
+    ||| DECREAMENT |||
+    // EXAMPLE 1 \\
+    for ($num = 10; $num > 0; $num--){
+        echo $num . "<br>";
+    }
+
+    || EXECISE -  ||
+    [
+        [--- INCREAMENT ---]
+        <html>
+        <body>
+        <form action="index.php" method="post">
+            <label>Enter Number To Count To:</label><br>
+            <input type="text" name="counter"><br>
+            <input type="submit" value="start">
+        </form>
+        </body>
+        </html>
+
+        <?php
+
+            $counter = $_POST["counter"];
+
+            for($num = 1; $num <= $counter; $num++){
+                echo $num . "<br>";
+            }
+        ?>
+
+        [--- DECREMENT ---]
+        <body>
+        <form action="index.php" method="post">
+            <label>Enter Number To Count Dowm From:</label><br>
+            <input type="text" name="counter"><br>
+            <input type="submit" value="start">
+        </form>
+        </body>
+        </html>
+
+        <?php
+
+            $counter = $_POST["counter"];
+
+            for($num = 10; $num >= $counter; $num--){
+                echo $num . "<br>";
+            }
+        ?>
+    ]
+]
+
+
+
+WHILE LOOP IN PHP
+[
+    WHILE LOOP WILL DO SOME CODE INFINITELY,
+    WHILE SOME CONDITION REMAINS TRUE.
+
+    EXAMPLE 1
+    $counter = 0;
+
+    while($counter < 10){
+        $counter++;
+        echo $counter . "<br>";
+    }
+]
+
+
+
+ARRAYS IN PHP
+[
+    ARRAYS ARE VARIABLES WHICH CAN HOLD MORE THAN OME DATA AT A TIME.
+
+    $foods = array("apple", "orange", "banana", "cococnut");
+    echo $foods[0] . "<br>";
+    echo $foods[1] . "<br>";
+    
+    # TO DISPLAY ALL THE ELEMENTS IN AN ARRAY THE SIMPLY AND CONVINENT WAY, USE CODE BELOW.
+    foreach ($foods as $food){
+        echo $food . "<br>";
+    }
+
+    # TO CHANGE THE VALUE OF AN ITEM IN AN ARRAY, USE EXAMPLE BELOW.
+    $foods[0] = "mango";
+
+    # YOU CAN PUSH(Append) VALUE TO THE END OF AN ARRAY
+    array_push($foods, "pineapple", "tomatos");
+
+    # THIS WILL REMOVE THE LAST ELEMENT
+    array_pop($foods);
+
+    # THIS WILL REMOVE THE FIRST ELEMENT
+    array_shift($foods);
+    
+    # THIS WILL REVERSE THE ELEMENTS
+    $reve_food = array_reverse($foods);
+    echo $reve_food;
+
+    # THIS WILL COUNT THE NUMBER OF ELEMENT IN A ARRAY.
+    echo count($foods);
+]
+
+
+
+ASSOCIATIVE ARRAY
+[
+    ASSOCIATIVE ARRAY IS AN ARRAY MADE OF key=>value PAIRS.
+    countries => capitals
+    id => username
+    item => price
+
+    $capitals = array(
+        "Ghana"=>"Accra",
+        "USA"=>"Washington D.C.",
+        "Japan"=>"Kyoto",
+        "India"=>"New Delhi"
+    );
+    
+    # TO PRINT THE VALUE OF A KEY, USE EXAMPLE BELOW.
+    echo $capitals["USA"] . "<br><br>";
+
+    # TO CHANGE THE VALUE FOR ONE OF THE KEYS, USE EXAMPLE BELOW.
+    $capitals["USA"] = "Las Vegas";
+    
+    # TO ADD A NEW VALUE PAIR, USE EXAMPLE BELOW.
+    $capitals["China"] = "Beijing";
+
+    # THIS WILL REMOVE THE LAST VALUE.
+    array_pop($capitals);
+
+    # THIS WILL REMOVE THE FIRST VALUE.
+    array_shift($capitals);
+
+    # THIS WILL GET THE [keys] OF AN ARRAY, 
+    # AND DISPLAY THEM WITH A foreach loop.
+    $keys = array_keys($capitals);
+    foreach ($keys as $key){
+        echo $key . "<br>";
+    }
+    echo "<br>";
+
+    # THIS WILL GET THE [values] OF AN ARRAY, 
+    # AND DISPLAY THEM WITH A foreach loop.
+    $values = array_values($capitals);
+    foreach ($values as $value){
+        echo $value . "<br>";
+    }
+    echo "<br>";
+
+    # TO DISPLAY ALL THE [key] and [value] OF AN ARRAY, 
+    # WE'RE GOING TO DO SOMETHING DIFFERENT.
+    # THIS WILL LOOP THROUGH ALL OF THE [$key] [$value] PAIRS.
+    foreach($capitals as $key => $value){
+        echo "{$key} = {$value} <br>";
+    }
+    echo "<br>";
+
+    # TO FLIP THE KEYS OF AN ARRAY,  
+    # WITH THE VALUES OF AN ARRAY, USE EXAMPLE BELOW.
+    $capitals = array_flip($capitals);
+    foreach ($capitals as $key => $value){
+        echo "{$key} = {$value} <br>";
+    }
+    echo "<br>";
+
+    # TO REVERSE AN ARRAY,  
+    # THE [keys] AND [values] WILL TURN UPSIDE-DOWN, USE EXAMPLE BELOW.
+    $capitals = array_reverse($capitals);
+    foreach ($capitals as $key => $value){
+        echo "{$key} = {$value} <br>";
+    }
+    echo "<br>";
+
+    # TO GET THE AMOUNT OF [key, value Pairs]
+    echo count($capitals);
+
+
+    //// EXECISE - USER ENTERS A COUNTRY NAME AND PROGRAM RETRIVES THE CAPITAL CITY. \\\\ 
+    [
+        <html>
+        <body>
+            <form action="index.php" method="post">
+                <label>Enter Country:</label><br>
+                <input type="text" name="country"><br>
+                <input type="submit" value="Find City">
+            </form>
+        </body>
+        </html>
+
+        <?php
+
+            $capitals = array(
+                "Ghana"=>"Accra",
+                "USA"=>"Washington D.C.",
+                "Japan"=>"Kyoto",
+                "India"=>"New Delhi"
+            );
+
+            $city = $capitals[ $_POST["country"] ];
+
+            echo "The Capital City Is: {$city}";
+
+        ?>
+    ]
+
+    EXAMPLE  [ $_POST ] AND [ $_GET ] ARE IN-BUILT ASSCOIATE ARRAYS.
+    [
+        <html>
+        <body>
+            <form action="index.php" method="post">
+                <label>username:</label><br>
+                <input type="text" name="usrname"><br>
+                <label>password:</label><br>
+                <input type="text" name="pwd"><br>
+                <input type="submit" name="log_in" value="login">
+            </form>
+        </body>
+        </html>
+
+        <?php
+
+            # THE [ $_POST ] AND [ $_GET ] ARE IN-BUILT ASSCOIATE ARRAYS, 
+            # WHICH STORE DATA FROM AN HTML FORM, SEE EXAMPLE.
+            foreach ($_POST as $key => $value){
+                echo "{$key} = {$value} <br>";
+            }
+            # CLICK THE [ login ] BUTTON TO SEE THE RESULTS.
+        ?>
+    ]
+]
+
+
+
+THE [isset()] AND [empty()] FUNCTION
+[
+    THESE ARE TWO USEFULL PHP FUNCTIONS.
+    THEY ARE USED TO DETERMINE WETHER HTML ELEMENTS, ARE FILLED-IN OR OTHERWISE INTERACTED WITH.
+
+    isset() RETURNS TRUE IF A VARIABLE IS DECLARED AND NOT [ null ].
+    empty() RETURNS TRUE IS A VARIABLE IS NOT [ declared, false, null, "" ].
+
+    IN PHP '1' MEANS TRUE, NOTHING MEANS FALSE.
+
+    EXAMPLE
+    [
+        // ISSET() \\
+        $username = "dhope"; 
+    
+        # IN PHP '1' MEANS TRUE, NOTHING MEANS FALSE.
+        echo isset($username);
+
+
+        // EMPTY() \\
+        $username = false;
+    
+        if (empty($username)) {
+            echo "This variable is empty";
+        } else {
+            echo "This variable is NOT EMPTY";
+        }
+    ]
+
+
+    EXECISE - CHECK IF USER FILLED THE FORM WHEN BUTTON IS BEING CLICKED THEN REACT TO THAT.
+    [
+        <html>
+        <body>
+            <form action="index.php" method="post">
+                <label>username:</label><br>
+                <input type="text" name="usrname"><br>
+                <label>password:</label><br>
+                <input type="text" name="pwd"><br>
+                <input type="submit" name="log_in" value="login">
+            </form>
+        </body>
+        </html>
+
+        <?php
+            
+            if (isset($_POST["log_in"])) {
+                $username = $_POST["usrname"];
+                $password = $_POST["pwd"];
+
+                if (empty($username)) {
+                    echo "username is missing";
+                }
+                elseif (empty($password)){
+                    echo "password is missing";
+                }
+                else {
+                    echo "Hello {$username}";
+                }
+            }
+            
+        ?>
+    ]
+
+]
+
+
+
+RADIO BUTTON IN PHP
+[
+    EXECISE - CHECKING IS BUTTON IS CLICKED AND CHECKING IF ANY BUTTON HAS BEING SELECTED.
+    [
+        # CHECKING IS BUTTON IS CLICKED.
+        if (isset($_POST["confirm"])) {
+
+            # CHECKING IF ANY BUTTON HAS BEING SELECTED
+            if (isset($_POST["credit_card"])) {
+                $creditCard = $_POST["credit_card"];
+                echo $creditCard;
+            } else {
+                echo "Please Make A Selection";
+            }
+            
+        }
+    ]
+    
+]
+
+
+
+CHECK-BOX IN PHP
+[
+    IF WE USE [method="post"] WE WILL GET A [KEY VALUE PAIR] FROM THIS FORM.
+    WERE THE [name=""] WILL BE THE KEY, AND [value=""] WILL BE THE VALUE.
+
+    EXAMPLE 1
+    [
+        <body>
+        <form action="index.php" method="post">
+            <input type="checkbox" name="food" value="Banku">Banku<br>
+            <input type="checkbox" name="first" value="mango">mango<br>
+            <input type="checkbox" name="vegetable" value="tomatos">tomatos<br>
+            <input type="submit" name="submit" value="submit">
+        </form>
+        </body>
+        </html>
+
+        <?php
+            # CHECKING IF SUBMIT BUTTON IS CLICKED
+            if (isset($_POST["submit"])) {
+                
+                # CHECKING IF BUTTON IS SELECTED
+                if (isset($_POST["food"])) {
+                    echo "You Like Banku";
+                }
+            }
+        ?>
+    ]
+]
+
+
+
+FUNCTIONS IN PHP
+[
+    FUNCTIONS ARE REUSEABLE CODE. 
+    
+    EXAMPLE 1
+    [
+        function happy_birthday($firstName, $age) {
+            echo "Happy Birth Day To You {$firstName} You are {$age} Years Old.";
+        }
+
+        # TO CALL A FUNCTION
+        happy_birthday('James', 34);
+    ]
+
+    EXAMPLE 2 
+    [
+        <?php
+            function is_even($num) { 
+                # IF '$result' = 0 THEM IS EVEN
+                # IF '$result' = 1 THEM IS OLD
+                return $num % 2;
+            }
+
+            # TO CALL A FUNCTION
+            echo is_even(11);
+        ?>
+    ]
+
+    EXAMPLE 3
+    [
+        # FIND hypotenuse OF A TRANGLE
+        # YOU SET DATA TYPE WITH THE ARGUMENT, SEE EXAMPLE BELOW.
+        function hypotenuse_ofTranlge(float $value1, float $value2){
+            $result = sqrt($value1 ** 2 + $value2 ** 2);
+            return $result;
+        }
+
+        echo hypotenuse_ofTranlge(3, 4);
+    ]
+]
+
+
+
+STRING FUNCTIONS IN PHP
+[
+    SET STRINGS TO LOWER-CASE
+    [ 
+        $usrname = "Dhope";
+        $usrname = strtolower($usrname);
+    ]
+
+    SET TO UPPER-CASE
+    $usrname = strtolower($usrname);
+
+    THIS WILL REMOVE ANY SPACE BEFORE AND AFTER YOUR TEXT.
+    $usrname = trim($usrname);
+
+    THIS WILL SET THE NUMBER OF CHARATERS WE WANT, 
+    AND IF YOU DON'T GIVE ALL, WE ADD SOME CHARATERS SO IT WILL REACH THE SET NUMBER OF CHARATERS.
+    $usrname = str_pad($usrname, 20, "g");
+
+    REPLACEMENT
+    $usrname = str_replace("what_To_Repalce", "replace_With_This", $usrname);
+
+    REVERSE
+    $usrname = strrev($usrname);
+
+    shuffle
+    $usrname = str_shuffle($usrname);
+
+    String Compare
+    # IF THE TWO STRINGS ARE THE SAME IT WILL RETURN '0' IF DIFERENT IT WILL RETURN '1' OR '-1'.
+    $usrname = strcmp($usrname, 'h');
+
+    String Lenght
+    $usrname = strlen($usrname);
+
+    String Position
+    $usrname = "Dhope";
+    # This shows the position of the string you pass alone with the variable.
+    $usrname = strpos($usrname, "o");
+
+    SUBSTRING
+    $usrname = "Dhope Nation";
+    # This helps you create a new string from an existing string, 
+    # but you will need to specify the begining and end of the string you want to use. 
+    $name = substr($usrname, 0, 5);
+    # YOU CAN SPECIFIC THE BEGINING AND LEAVE THE END
+    $last_name = substr($usrname, 6);
+    echo $name;
+
+    STRING EXPLODE
+    $usrname = "SHAMPI LELE THEO";
+    # ASSIGN STRING(TEXT) TO AN ARRAY, 
+    # AND DEFINE WHAT YOU USE TO SEPARATE THE STRINGS(TEXT), THAT WILL BE YOUR FIRST ARGUMENT
+    $fullname = explode(" ", $usrname);
+    foreach($fullname as $name){
+        echo $name . "<br>";
+    }
+
+    STRING IMPLODE
+    # THIS TAKES AN ARRAY, AND MAKES A SINGLE STRING OUT OF IT. 
+    $usrname = array("SHAMPI", "LELE", "THEO");
+    $fullname = implode($usrname);
+    # AND BETWEEN EACH ELEMENT YOU CAN ADD CHARATERS LIKE: " ", AS THE FIRST ARGUMENT.
+    $fullname = implode(" ", $usrname);
+    echo $fullname;
+    
+]
+
+
+
+SANITAISE AND VALIDATE USER INPUT
+[
+    YOU NEED TO SANITAISE YOUR USER INPUT TO AVOID INTRUDISE(HACKERS), 
+    FROM BREAKING INTO OUR SYSTEM WITH MARLICUS CODE LIKE: [ <script>alert("gh");</script> ] INTO THE TEXT FEILD.
+
+    ONE WAY WE CAN DO THIS IS TO ADD A FILTER TO STANITIZE USER INPUT.
+
+    ///// SANITAISE USER INPUT EXAMPLES \\\\\
+    [
+        <HTML>
+        <body>
+            <form action="index.php" method="post">
+                <label>username:</label><br>
+                <input type="text" name="username"><br>
+                <label>age:</label><br>
+                <input type="text" name="age"><br>
+                <label>email:</label><br>
+                <input type="text" name="email"><br>
+                <input type="submit" name="login" value="login">
+            </form>
+        </body>
+        </html>
+
+        <?php
+            # CHECKING IF BUTTON IS CLICKED
+            if(isset($_POST["login"])){
+                
+                # INSTAND OF ASSIGNING '$_POST["username"]' DIRECTLY TO THE VARIABLE WE WILL USE THE FILTER FUNCTION. 
+                # WE USE 'INPUT_GET'  BECAUSE WE'RE USING POST FOR THE 'method'
+                $username = filter_input(
+                    # FIRST ARGUMENT IS FOR THE METHOD USED post Or get.
+                    INPUT_POST, 
+                    # SECOND ARGUMENT IS THE NAME OF THE <input> FROM THE HTML FORM
+                    "username", 
+                    # TO REMOVE ANY SPECIAL CHARATERS USED TO EXECUTE CODE
+                    FILTER_SANITIZE_SPECIAL_CHARS
+                );
+
+                # IF YOU NEED TO FILTER ALL CHARARTERS EXSPECT(BE-SIZE) NUMBERS USE THE [FILTER_SANITIZE_NUMBER_INT] EXAMPLE BELOW.
+                # THIS WILL FILTER EVERYTHING EXSPECT NUMBERS.
+                $age = filter_input(
+                    INPUT_POST,
+                    "age",
+                    FILTER_SANITIZE_NUMBER_INT
+                );
+
+                # THIS WILL FILTER OUT EVERYTHING EXSPECT AN EMAIL.
+                # IF YOU TYPE [ <fake@gmail.com>(); ] IT WILL DISPLAY [ fake@gmail.com ]
+                $email = filter_input(
+                    INPUT_POST,
+                    "email",
+                    FILTER_SANITIZE_EMAIL
+                );
+
+                echo "Hello {$email}";
+            }
+        ?>
+    ]
+
+
+
+    VALIDATE USER INPUT
+    [
+        IF THE USER THAT'SNT PASS THE VALIDATION TEXT IT WILL RETURN AN EMPTY STRING.
+        [
+            <html>
+            <body>
+                <form action="index.php" method="post">
+                    <label>age:</label><br>
+                    <input type="text" name="age"><br>
+                    <label>email:</label><br>
+                    <input type="text" name="email"><br>
+                    <input type="submit" name="login" value="login">
+                </form>
+            </body>
+            </html>
+
+            <?php
+                # CHECKING IF BUTTON IS CLICKED
+                if(isset($_POST["login"])){
+
+                    # THIS WILL REMOVE EVERYTHING EXSPECT A VALID NUMBER ONLY.
+                    $age = filter_input(
+                        INPUT_POST,
+                        "age",
+                        FILTER_VALIDATE_INT
+                    );
+
+                    # THIS WILL REMOVE EVERYTHING EXSPECT A VALID EMAIL ADDRESS.
+                    $email = filter_input(
+                        INPUT_POST,
+                        "email",
+                        FILTER_VALIDATE_EMAIL
+                    );
+
+                    if(empty($email)){
+                        echo "That wasn't valid";
+                    }
+                    else{
+                        echo "Your Email Is: {$email} ";
+                    }
+                }
+            ?>
+        ]
+    ]
+]
+
+
+
+THE 'include()' FUNCTION IS PHP
+[
+    include() = THIS COPIES THE CONTENT OF A FILE(php/html/text)
+                AND INCLUDES IT IN YOUR PHP FILE.
+                SECTIONS(header and footer) OF OUR WEBSITE BECOME REUSEABLE ACROSS OTHER PAGES EX:(html code writen in PHP file),
+                AND CHANGES ONLY NEED TO BE MADE IN ONE PLACE.
+
+    
+]
+
+
+
+COOKIE IN PHP
+[
+    COOKIE = IS USED TO STORE INFORMATION ABOUT A WEB USER IN A WEB-BROWSER.
+             AND USED FOR: TARGETED ADVERTISEMENTS, BROWSING PREFERENCES, AND OTHER NON-SENSITIVE DATA.
+
+    SEE EXAMPLE
+    [
+        <?php
+            /*
+                TO CREATE COOKIE IN PHP WE WILL USE THE 'setcookie()' FUNCTION
+                COOKIE ARE STORED AS AN ASOCIATE ARRAY,
+                ARGUMENTS = 1 IS KEY = setcookie("fav_food");
+                            2 IS VALUE = setcookie("fav_food", "pizza");
+                            3 IS EXPIRATION TIME(inSeconds 1Day=86400) = setcookie("fav_food", "pizza", time() + (86400 * 2));
+                            4 IS FilePath("/"=Defualt) = setcookie("fav_food", "pizza", time() + (86400 * 2), "/");
+
+                // TO CHECK COOKIE IN BROWSER \\
+                1. RIGHT CLICK AND SELECT 'inspect'
+                2. FIND AND CLICK ON APPLICATION
+                3. UNDER 'Storage' CLICK ON 'Cookies' AND THE LINK IN IT, DONE.
+            */
+
+            setcookie("fav_food", "rice", time() + (86400 * 2), "/");
+            setcookie("fav_music", "GIDIGDA", time() + (86400 * 4), "/");
+
+            /*
+                // TO DELECT A COOKIE \\
+                ALL YOU NEED TO DO IS TO SET THE TIMER,
+                TO '-0' ex: setcookie("fav_food", "rice", time() + -0, "/");
+            */
+
+            # USE EXAMPLE TO PRINT EACH KEY=>VALUE PAIR
+            # WE WILL USE THE $_COOKIE SUPER GLOBAL VARIABLE
+            foreach($_COOKIE as $key => $value){
+                echo "{$key} = {$value} <br> ";
+            }
+
+            # TO ACCESS ONE OF THE VALUES
+            # CHECK IF IT'S SET THEM RETURN IT TO THE USER
+            if(isset($_COOKIE["fav_food"])){
+                echo "ENJOY SOME {$_COOKIE["fav_food"]} !!!";
+            }
+            else{
+                echo "I don't know your favorite food";
+            }
+        ?>
+    ]
+]
+
+
+
+SESSIONS IN PHP
+[
+    SESSION = A SUPER GLOBAL VARIABLE(SGB) USED TO STORE INFORMATION ON A USER,
+              TO BE USED ACROSS MULTIPLE PAGES.
+              A USER IS ASSIGNED A SESSION-ID, WHEN SESSION IS CREATED.
+              EX: login credentials, 
+                  like facebook you can visit various pages on that same site, and still stay loged in.
+    
+
+    EXAMPLE ONE
+    [
+        <?php
+            # TO START SESSION, WRITE CODE ALWAYS ON TOP.
+            session_start();
+        ?>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            THIS IS THE LOGIN PAGE<br>
+            <a href="home.php">This goes to the Home Page</a><br>
+        </body>
+        </html>
+
+        <?php
+            # WE CAN CREATE NAME VALUE PAIRS WITHIN OUR SESSION SUPER GLOBAL VARIABLE
+            $_SESSION["username"] = "Samson";
+            $_SESSION["password"] = "Lele"; 
+            
+            echo $_SESSION["username"] . "<br>";
+            echo $_SESSION["password"] . "<br>";
+            # THE DATA IS STORED WITHIN THE SESSION VARIABLE BUT WE CAN ACCESS THEM WITH THE KEY.
+
+            # TO ACCESS THESE VARIABLES OUTSIDE OF THIS FILE, 
+            # YOU WILL NEED TO START THE SESSION AT THE VERY TOP OF THAT FILE. EXAMPLE BELOW.
+            /*
+                <?php
+                    # TO START SESSION, WRITE CODE ALWAYS ON TOP(BEFORE ANY HTML CODE).
+                    session_start();
+                ?>
+            */
+        ?>
+    ]
+
+
+    EXAMPLE TWO
+    [
+        
+    ]
+
+]
