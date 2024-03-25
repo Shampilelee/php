@@ -1,3 +1,4 @@
+
 <style>
     body{
         background-color: black;
@@ -5,8 +6,9 @@
     }
 </style>
 
+
 <?php
-   session_start();
+    include("database.php");
 ?>
 
 <!DOCTYPE html>
@@ -17,35 +19,56 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="index.php" method="post">
-        <label>username:</label><br>
-        <input type="text" name="username"><br>
-        <label>password:</label><br>
-        <input type="password" name="password"><br>
-        <input type="submit" name="log_in" value="login"><br>
+    <form action="<?php htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+        <h2>Welcome to DhopeCorn👨‍💻</h2>
+        username:<br>
+        <input type="text" name="user_name"><br>
+        password:<br>
+        <input type="password" name="user_pwd"><br>
+        <input type="submit" name="submit" value="login"><br>
+        
     </form>
 </body>
 </html>
 
 <?php
-    if (isset($_POST["log_in"])) {
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
+        $username = filter_input(INPUT_POST, "user_name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $password = filter_input(INPUT_POST, "user_pwd", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        if (!empty($_POST["username"]) && !empty($_POST["password"])) {
-
-            # IN REAL WORLD YOU MUST USE, USER INPUT FILTER.
-            $_SESSION["usrname"] = $_POST["username"];
-            $_SESSION["pwd"] = $_POST["password"];
-
-            echo $_SESSION["usrname"] . "<br>";
-            echo $_SESSION["pwd"];
+        if (empty($username)) {
+            echo "Please Enter Your Username";
         }
-        else{
-            echo "Missing username/password <br>";
+        elseif (empty($password)){
+            echo "Please Enter Your Password";
+        }
+        else {
+
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql_code = "INSERT INTO users (username, password)
+                         VALUE ('$username', '$hashed_password') ";
+
+            # ADD try-catch Here
+            try {
+                mysqli_query($conn, $sql_code);
+                echo "You Are Now Registered!";
+            } catch (mysqli_sql_exception) {
+                echo "You have a problem signing up";
+            }
+            
         }
     }
+
+
+
+
+
+
+
+ 
+    # CLOSE CONNECTION WITH MySQL
+    mysqli_close($conn);
 ?>
-
-
-
-

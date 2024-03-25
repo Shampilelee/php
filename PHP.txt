@@ -1252,7 +1252,372 @@ SESSIONS IN PHP
 
     EXAMPLE TWO
     [
-        
+        /// index.php \\\
+        <?php
+            session_start();
+        ?>
+        <body>
+            <form action="index.php" method="post">
+                <label>username:</label><br>
+                <input type="text" name="username"><br>
+                <label>password:</label><br>
+                <input type="password" name="password"><br>
+                <input type="submit" name="log_in" value="login"><br>
+            </form>
+        </body>
+        </html>
+
+        <?php
+            if (isset($_POST["log_in"])) {
+                
+
+                if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+
+                    # IN REAL WORLD YOU MUST USE, USER INPUT FILTER.
+                    $_SESSION["usrname"] = $_POST["username"];
+                    $_SESSION["pwd"] = $_POST["password"];
+
+                    # THIS TAKES US TO THE NEXT(home.php) PAGE.
+                    # USING THE HEADER FUNCTION
+                    header("Location: home.php");
+                }
+                else{
+                    echo "Missing username/password <br>";
+                }
+            }
+        ?>
+
+
+
+        /// home.php \\\
+        <?php
+            session_start();
+        ?>
+        <body>
+            THIS IS THE HOME PAGE<br>
+            <!-- THIS IS A LOGOUT BUTTON -->
+            <form action="home.php" method="post">
+                <input type="submit" name="log_out" value="logout">
+            </form>
+        </body>
+        </html>
+        <?php
+            echo $_SESSION["username"] . "<br>";
+            echo $_SESSION["password"] . "<br>";
+
+            # WE WILL USE THE [isset()] FUNCTION TO SEE WETHER OUR LOGOUT BUTTON IS SET.
+            if (isset($_POST["log_out"])) {
+
+                # WE WILL END THE SESSION BEFORE LOGGING OUT.
+                # THE CODE BELOW IS USED FOR LOGGING OUT.
+                session_destroy();
+
+                # AFTER LOGGING OUT, WE MOVE BACK TO THE INDEX PAGE.
+                header("Location: index.php");
+            }
+        ?>
+    ]
+]
+
+
+
+THE $_SERVER 
+[
+    THE $_SERVER = IS A SUPER GLOBAL VARIABLE THAT CONTAINS [headers, paths, and script Locations]
+                   THE ENTIRES IN THIS ASSCOIATE ARRAY ARE CREATED BY THE WEB SERVER.
+                   SHOWS NEARLY EVERYTHING YOU NEED TO KNOW ABOUT THE CURRENT WEB PAGE ENVIRONMENT.
+
+    <!-- 
+        IF YOU'RE REFERENING TO THE SAME FILE(SELF), USE THIS IN THE [action=""]
+    -->
+    <form action="<?php $_SERVER["PHP_SELF"] ?>" method="post">
+        <input type="text" name="usrname">
+        <input type="submit">
+    </form>
+
+    TO AVOID ANY CROSS SITE SCRIPT USE EXAMPLE BELOW FOR MORE SAFETY.
+    THE EXAMPLE BELOW IS A FILTER.
+    [ <form action="<?php htmlspecialchars( $_SERVER["PHP_SELF"] ) ?>" method="post"> ]
+
+    // REQUEST_METHOD \\
+    THE REQUEST_METHOD IS A KEY IN THE $_SERVER ASSCOIATE ARRAY, AND IT'S DEFAULT VALUE IS: GET.
+    YOU CAN USE THIS KEY TO CHECK IF A FORM AS BEEN SUBMITED WITHOUT CLICKING THE SUBMIT BUTTON.
+    THIS IS A MORE RELAIBLE WAY OF HANDLING THINGS LIKE THIS.
+    [
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+            echo "Hello";
+        }
+    ]
+]
+
+
+
+HASHING IN PHP
+[
+    HASHING IS THE PROCESS OF TRANSFORMING SENSITIVE DATA (passowrd)
+            INTO LETTERS, NUMBERS, AND/OR SYMBOLS
+            VIA A MATHEMATICAL PROCESS. (SIMILAR TO ENCRYPTION - BUT TECHNICALLY DIFFERENT)
+            USED TO HIDE SENSITIVE/ORIGINAL DATA FROM 3rd PARTIES.
+
+    
+    TO CREATE A HASH
+    [
+        $password = "pizza23";
+        # THE ARGUMENTS FOR password_hash($variable_NAME, hashing_Algorithm);
+        # [PASSWORD_DEFAULT] IS A bcrypt ALGORITHM.
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        echo $hashed_password;
+        echo "<br>";
     ]
 
+    TO VERIFIY OR COMPARE PASSWORD
+    [
+        // password_verify() \\
+        # YOU CAN COMPARE A PASSWORD(PLAIN TEXT) AND A PASSWORD HASH
+        # IF THEY ARE MATHEMATICALLY SIMILAR, THE password_verify() WILL RETURN TRUE.
+        if (password_verify("pizza23", $hashed_password)) {
+            echo "Logged In";
+        } else {
+            echo "Password thus not match";
+        }
+    ]      
+]
+
+
+
+CONNECTING TO MySQL SERVER AND DATABASE IN PHP
+[
+    CREATE A DATABASE IN MySQL SERVER OR ANY DATABASE SERVERS YOU PREFER.
+    THEN CREATE A NEW PHP FILE TO MANAGE YOUR PHP OPEARTINGS. eg: [database.php]
+
+
+    THIS IS THE database.php FILE
+    [
+        <?php
+            # ANYTHING RELATED TO CONNECTING TO OUR DATABASE WILL BE HANDLED HERE.
+
+            # THIS HOLDS THE NAME OF THE SERVER(Host name)
+            $db_server = "localhost";
+
+            # THIS HOLDS THE NAME OF THE USER(User name)
+            $db_user = "root";
+
+            # THIS HOLDS THE PASSWORD
+            $db_pwd = "";
+
+            # THIS HOLDS THE NAME OF THE DATABASE
+            $db_name = "dhope_db";
+
+            # THIS IS THE CONNECTION VARIABLE
+            $conn = "";
+
+
+            // Enable mysqli exception mode
+            /*
+                THE CODE BELOW ENABLE MySQLi TO THROW EXCEPTIONS WHEN CONNECTION ERROR OCCURS.
+            */
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+            
+            
+            /*
+                THE try_AND_catch IS USED FOR CODES WHICH MIGHT GENERATE ERROR,
+                FOR WE USE IT TO HANDLE ERROR.
+                EXAMPLE BELOW.
+            */
+            try {
+                # TO ESTABLISH A CONNECTION TO THE MySQL DATABASE, USE EXAMPLE BELOW.
+                # [mysqli_connect()] IS AN EXTENTION IN VSCODE, IT TAKES FOUR(4) ARGUMENTS.
+                # [mysqli_connect()] WAS GIVING ME ERRORS SO I USED [mysqli]
+                # The @ symbol before new mysqli() suppresses any warnings or errors that might occur during the connection attempt
+                # If an exception occurs during the connection attempt or if the connection fails, 
+                # it will be caught by the catch block, and only the error message from the catch block will be displayed.
+                # This should prevent any duplicate error message from being displayed.
+                
+                // Attempt to establish connection
+                $conn = @new mysqli(
+                    $db_server, 
+                    $db_user, 
+                    $db_pwd, 
+                    $db_name
+                );
+
+                // Check Connection successful, do further processing here
+                if ($conn){
+                    echo "YOU ARE CONNECTED !";
+                }
+                
+            } 
+            /*
+                catch(
+                    THEN PUT THE NAME OF THE ERROR HERE,
+                    IT USUALLY SHOW AFTER Warning:, Fatal error: AND SO ON,
+                    IF NOT WORKING FIND THE NAME OF THE ERROR ON GOOGLE AND PUT IT HERE. 
+                )
+            */
+            catch (Exception $e) {
+                echo "SORRY, COULD NOT CONNECT: ". $e->getMessage();
+            }
+
+        ?>
+    ]
+
+
+    THIS IS THE index.php FILE
+    [
+        <?php
+            # IMPORT/INCLUDE PHP FILE.
+            include("database.php");
+        ?>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            Hello<br>
+        </body>
+        </html>
+    ]
+]
+
+
+
+HOW TO CREATE A TABLE WITH PHP_MY_ADMIN
+[
+    /// CREATE TABLE PHP_MY_ADMIN \\\
+    GO TO DATABASE
+    CLICK ON THE DB YOU WANT CREATE TABLE FOR
+    ENTER YOUR PERFER TABLE NAME
+    SET COLUMNS
+    CLICK Create
+    Naming 4 Columns
+        'id' [Type]=INT, [Index]=PRIMARY, select=A_I(Automatice Increament).
+        'username' [Type]=VARCHAR, [Lenght]=25, [Index]=UNIQUE.
+        'passowrd' [Type]=CHAR, [Lenght]=255.
+        'reg_date' [Type]=DATETIME, [Defualt]=CURRENT_TIMESTAMP.
+        
+    
+    /// INSERT DATA INTO ROW WITH PHP_MY_ADMIN \\
+    CLICK Insert
+    ENTER VALUES AND CLICK Go.
+]
+
+
+
+INSERT DATA INTO MySQL TABLE USING PHP CODE
+[
+    <?php
+        # IMPORT/INCLUDE PHP FILE.
+        include("database.php");
+
+        $usr_name = "ACCRA";
+        $pwd = "WoRK4";
+        $hashed_password = password_hash($pwd, PASSWORD_DEFAULT);
+
+        # THIS WILL HOLD OUR SQL QUERY
+        # 'users' IS THE TABLE NAME, 'username' AND 'password' ARE THE COLUMN NAMES.
+        $sql_code = "INSERT INTO users (username, password)
+                VALUES ('$usr_name', '$hashed_password')";
+        
+
+        try {
+            # TO SUBMIT QUERY, USE EXAMPLE BELOW.
+            # DON'T MIND THE red ERROR EVERYTHING SHOULD WORK FIND
+            # WE'RE HAVING THIS RED ERROR BECAUSE THE VARIABLE IS FROM ANOTHER FILE.
+            mysqli_query($conn, $sql_code);
+            echo "USER IS NOW REGISTERED";
+
+        } catch (mysqli_sql_exception) {
+            echo "Sorry, We Could Not Register User";
+        }
+
+
+        # THIS CLOSES THE CONNECTION
+        mysqli_close($conn);
+    ?>
+]
+
+
+
+HOW TO RETRIVE ONE-ROW DATA FROM MySQL DATABASE USING PHP CODE
+[
+    <?php
+        # IMPORT/INCLUDE PHP FILE.
+        include("database.php");
+
+        # THIS WILL HOLD OUR SQL QUERY
+        # 'users' IS THE NAME OF THE TABLE
+        $sql_code = "SELECT * FROM users WHERE username = 'ACCRA' ";
+        
+        # THIS SENDS A QUERY TO THE DATABASE, 
+        # IF SUCCESSFUL IT WILL AN OBJECT.
+        # DON'T MIND THE red ERROR EVERYTHING SHOULD WORK FIND
+        # WE'RE HAVING THIS RED ERROR BECAUSE THE VARIABLE IS FROM ANOTHER FILE.
+        $response_from_DB = mysqli_query($conn, $sql_code);
+
+        # TO FIND HOW MANY ROWS ARE RETURN FROM DATABASE USE CODE BELOW.
+        # [mysqli_num_rows($response_from_DB)]
+        if (mysqli_num_rows($response_from_DB) > 0) {
+            
+            # TO GET THE ROWS FROM [$response_from_DB], USE CODE BLOW.
+            
+            # THIS FUNCTION RETURNS THE NEXT AVAIABLE ROW, WITHIN OUR OBJECT($response_from_DB) SEE FUNCTION BELOW.
+            # [mysqli_fetch_assoc()]
+            # OUR ROW IS AN ASSCOIATIVE ARRAY, WE CAN ACCESS DATA BY A 'key' AND THE VALUE WILL BE GIVEN.
+            $row = mysqli_fetch_assoc($response_from_DB);
+
+            echo $row["id"] . "<br>";
+            echo $row["username"] . "<br>";
+            echo $row["password"] . "<br>";
+            echo $row["reg_date"] . "<br>";
+        }
+        else{
+            echo "Sorry, No User Found";
+        }
+
+
+        # THIS CLOSES THE CONNECTION
+        mysqli_close($conn);
+    ?>
+]
+
+
+
+TO RETRIVE ALL DATA FROM MySQL TABLE USING PHP CODE.
+[
+    <?php
+    
+        include("database.php");
+        
+        $sql_code = "SELECT * FROM users";
+        
+        $response_from_DB = mysqli_query($conn, $sql_code);
+
+        
+        if (mysqli_num_rows($response_from_DB) > 0) {
+            
+            while ($row = mysqli_fetch_assoc($response_from_DB)) {
+                echo $row["id"] . "<br>";
+                echo $row["username"] . "<br>";
+                echo $row["password"] . "<br>";
+                echo $row["reg_date"] . "<br>";
+            }
+        }
+        else{
+            echo "Sorry, No User Found";
+        }
+
+
+        mysqli_close($conn);
+    ?>
+]
+
+
+
+RESGISTRATION FORM IN PHP
+[
+    
 ]
