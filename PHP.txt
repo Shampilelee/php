@@ -1621,3 +1621,18 @@ RESGISTRATION FORM IN PHP
 [
     
 ]
+
+
+
+To redirect a user to another page using PHP, you can use the header() function. 
+Here's how you can do it
+[
+    <?php
+    // Redirect to another page
+    header("Location: another_page.php");
+    exit; // Make sure to exit after redirection to prevent further execution
+    ?>
+]
+Replace "another_page.php" with the URL of the page you want to redirect the user to. Make sure that there is no output (such as HTML, whitespace, or error messages) before the header() function, as it will cause the redirection to fail.
+
+Additionally, make sure that you call exit or die immediately after the header() function to prevent any further code execution on the current page, as it may interfere with the redirection process.
